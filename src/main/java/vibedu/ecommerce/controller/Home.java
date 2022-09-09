@@ -1,14 +1,19 @@
 package vibedu.ecommerce.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/")
+@Controller
 public class Home {
 
-	@GetMapping("/")
-	public String Home_(){
+	@GetMapping({"/","/login"})
+	public String index(){
 		return "index";
+	}
+	@GetMapping({"/home"})
+	String home() {
+		return "home";
 	}
 	
 }
