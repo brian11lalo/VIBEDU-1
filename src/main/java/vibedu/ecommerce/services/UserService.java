@@ -2,6 +2,9 @@ package vibedu.ecommerce.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,14 +17,35 @@ import org.springframework.stereotype.Service;
 
 import vibedu.ecommerce.repository.IUsuario;
 @Service
+@Transactional
 public class UserService implements UserDetailsService {
 	@Autowired
-	private IUsuario repository;
+	private IUsuario Userrepository;
+	public List<vibedu.ecommerce.model.User> lista(){
+		return Userrepository.findAll();
+	}
+	public Optional<vibedu.ecommerce.model.User> getById(int id){
+		return Userrepository.findById(id);
+	}
+	public Optional<vibedu.ecommerce.model.User> getByUsername(String username){
+		return Optional.ofNullable(Userrepository.findByUsername(username));
+	}
+	
+	public void save(vibedu.ecommerce.model.User usuario) {
+		Userrepository.save(usuario);
+	}
+	public boolean existsById(int id) {
+		return Userrepository.existsById(id);
+	}
+	public boolean existsByUsername(String Username) {
+		return Userrepository.existsByUsername(Username);
+	}
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		vibedu.ecommerce.model.User user=repository.findByUsername(username);
-	
+		vibedu.ecommerce.model.User user=Userrepository.findByUsername(username);
+		
 		List<GrantedAuthority> roles = new ArrayList<>();
 		roles.add(new SimpleGrantedAuthority("ADMIN"));
 		//spring security user details

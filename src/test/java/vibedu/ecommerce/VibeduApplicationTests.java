@@ -27,7 +27,7 @@ class VibeduApplicationTests {
 	Timestamp time = new Timestamp(date.getTime());
 	@Test
 	public void crearUsuarioTest() {
-		User user = new User();
+		User user = new User(0, null, null, null, null, null, 0, false, time, time, null);
 		user.setId(1);
 		user.setUsername("alberto23121");
 		user.setPassword(encoder.encode("1234"));

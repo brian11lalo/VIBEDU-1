@@ -10,20 +10,23 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
+import vibedu.ecommerce.services.UserDetailsServiceImplements;
 import vibedu.ecommerce.services.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	private UserService userDetailsService;
+	private UserDetailsServiceImplements userDetailsService;
 	
 	 @Bean
 	    public  static BCryptPasswordEncoder passwordEncoder(){
 	        return new BCryptPasswordEncoder();
 	    }
-	@Override
+
+	 @Override
 	protected void configure(AuthenticationManagerBuilder auth)
 		throws Exception{
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
