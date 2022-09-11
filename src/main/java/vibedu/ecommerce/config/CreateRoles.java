@@ -14,7 +14,7 @@ public class CreateRoles implements CommandLineRunner {
 	RolService rolService;
 	@Override
 	public void run(String... args) throws Exception {
-		Rol rolDeveloper = new Rol(RolName.ROL_DEVELOPER); 
+/*		Rol rolDeveloper = new Rol(RolName.ROL_DEVELOPER); 
 		Rol rolAdmin = new Rol(RolName.ROL_ADMIN); 
 		Rol rolSeller = new Rol(RolName.ROL_SELLER); 
 		Rol rolTracing= new Rol(RolName.ROL_TRACING); 
@@ -25,7 +25,7 @@ public class CreateRoles implements CommandLineRunner {
 		rolService.save(rolSeller);
 		rolService.save(rolTracing);
 		rolService.save(rolAnalytics);
-		rolService.save(rolClient);
+		rolService.save(rolClient);*/
 		}
 
 }

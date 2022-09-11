@@ -34,7 +34,7 @@ Date date = new Date();
 Timestamp time = new Timestamp(date.getTime());
 @Override
 public void run(String... args) throws Exception {
-User user = new User();	
+/*User user = new User();	
 user.setId(1);
 user.setUsername("alberto23121");
 user.setPassword(encoder.encode("1234"));
@@ -51,6 +51,6 @@ Set <Rol> roles= new HashSet<>();
 roles.add(rolAdmin);
 roles.add(rolClient);
 user.setRoles(roles);
-userservice.save(user);
-}
+userservice.save(user);*/
+	}
 }
