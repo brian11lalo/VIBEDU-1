@@ -9,15 +9,18 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class User {
+public class Usuario {
 	@Id //primary key
-private int id;
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+private long id;
 	@Column(name="username",length =30)
 private String username; 
 	
@@ -44,38 +47,30 @@ private Timestamp created_at;
 	
 	@Column(name="updated_at")
 private Timestamp updated_at;
-@ManyToMany(fetch = FetchType.EAGER)
-@JoinTable(name ="user_rol" , joinColumns = @JoinColumn(name="user_id") , inverseJoinColumns = @JoinColumn(name="rol_id"))
-private Set<Rol> roles = new HashSet<>();	
+	  @ManyToMany (fetch = FetchType.EAGER)
+	    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
+	            inverseJoinColumns = @JoinColumn(name = "rol_id"))
+	    private Set<Rol> roles = new HashSet<>();
 	
 
 
-public User(int id, String username, String password, String mail, String name, String last_name, int updated_by,
-		boolean active, Timestamp created_at, Timestamp updated_at, Set<Rol> roles) {
-	super();
-	this.id = id;
+public Usuario(  String username, String password ) {
+	
 	this.username = username;
 	this.password = password;
-	this.mail = mail;
-	this.name = name;
-	this.last_name = last_name;
-	this.updated_by = updated_by;
-	this.active = active;
-	this.created_at = created_at;
-	this.updated_at = updated_at;
-	this.roles = roles;
+	
 }
 
 
-public User() {
+public Usuario() {
 	// TODO Auto-generated constructor stub
 }
 
 
-public int getId() {
+public long  getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(long  id) {
 	this.id = id;
 }
 public String getUsername() {

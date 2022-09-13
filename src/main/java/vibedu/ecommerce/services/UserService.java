@@ -21,17 +21,17 @@ import vibedu.ecommerce.repository.IUsuario;
 public class UserService implements UserDetailsService {
 	@Autowired
 	private IUsuario Userrepository;
-	public List<vibedu.ecommerce.model.User> lista(){
+	public List<vibedu.ecommerce.model.Usuario> lista(){
 		return Userrepository.findAll();
 	}
-	public Optional<vibedu.ecommerce.model.User> getById(int id){
+	public Optional<vibedu.ecommerce.model.Usuario> getById(int id){
 		return Userrepository.findById(id);
 	}
-	public Optional<vibedu.ecommerce.model.User> getByUsername(String username){
+	public Optional<vibedu.ecommerce.model.Usuario> getByUsername(String username){
 		return Optional.ofNullable(Userrepository.findByUsername(username));
 	}
 	
-	public void save(vibedu.ecommerce.model.User usuario) {
+	public void save(vibedu.ecommerce.model.Usuario usuario) {
 		Userrepository.save(usuario);
 	}
 	public boolean existsById(int id) {
@@ -44,7 +44,7 @@ public class UserService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		vibedu.ecommerce.model.User user=Userrepository.findByUsername(username);
+		vibedu.ecommerce.model.Usuario user=Userrepository.findByUsername(username);
 		
 		List<GrantedAuthority> roles = new ArrayList<>();
 		roles.add(new SimpleGrantedAuthority("ADMIN"));

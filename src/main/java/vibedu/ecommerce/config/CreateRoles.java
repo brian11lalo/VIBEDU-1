@@ -14,12 +14,12 @@ public class CreateRoles implements CommandLineRunner {
 	RolService rolService;
 	@Override
 	public void run(String... args) throws Exception {
-/*		Rol rolDeveloper = new Rol(RolName.ROL_DEVELOPER); 
-		Rol rolAdmin = new Rol(RolName.ROL_ADMIN); 
-		Rol rolSeller = new Rol(RolName.ROL_SELLER); 
-		Rol rolTracing= new Rol(RolName.ROL_TRACING); 
-		Rol rolAnalytics= new Rol(RolName.ROL_ANALYTICS); 
-		Rol rolClient= new Rol(RolName.ROL_CLIENT); 
+/*		Rol rolDeveloper = new Rol(RolName.ROLE_DEVELOPER); 
+		Rol rolAdmin = new Rol(RolName.ROLE_ADMIN); 
+		Rol rolSeller = new Rol(RolName.ROLE_SELLER); 
+		Rol rolTracing= new Rol(RolName.ROLE_TRACING); 
+		Rol rolAnalytics= new Rol(RolName.ROLE_ANALYTICS); 
+		Rol rolClient= new Rol(RolName.ROLE_CLIENT); 
 		rolService.save(rolDeveloper);
 		rolService.save(rolAdmin);
 		rolService.save(rolSeller);

@@ -1,5 +1,7 @@
 package vibedu.ecommerce.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,31 +9,37 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import net.bytebuddy.utility.nullability.NeverNull;
+import vibedu.ecommerce.model.Usuario;
 
 import vibedo.ecommerce.enums.RolName;
 @Entity
 public class Rol {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	@Enumerated(EnumType.STRING)
+    @NeverNull
 	@Column(unique = true)
 	private RolName rolName;
-	@Column(name = "status", nullable = false)
+	/*	@Column(name = "status", nullable = false)
 	private boolean status= true;
-
-	public Rol() {
+	 @ManyToMany(mappedBy = "rol")
+	    private List<Usuario> usuario;
+*/
+	 public Rol() {
 	}
 	
 	public Rol(RolName rolName) {
-		super();
 		this.rolName = rolName;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -43,11 +51,5 @@ public class Rol {
 		this.rolName = rolName;
 	}
 
-	public boolean isStatus() {
-		return status;
-	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
 	
 }

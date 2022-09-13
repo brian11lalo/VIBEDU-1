@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import vibedo.ecommerce.enums.RolName;
 import vibedu.ecommerce.model.Rol;
-import vibedu.ecommerce.model.User;
+import vibedu.ecommerce.model.Usuario;
 import vibedu.ecommerce.repository.IUsuario;
 import vibedu.ecommerce.services.RolService;
 import vibedu.ecommerce.services.UserService;
@@ -34,7 +34,7 @@ Date date = new Date();
 Timestamp time = new Timestamp(date.getTime());
 @Override
 public void run(String... args) throws Exception {
-/*User user = new User();	
+/*	Usuario user = new Usuario();	
 user.setId(1);
 user.setUsername("alberto23121");
 user.setPassword(encoder.encode("1234"));
@@ -45,8 +45,8 @@ user.setUpdated_by(3);
 user.setActive(true);
 user.setCreated_at(time);
 user.setUpdated_at(time);
-Rol rolAdmin = rolService.getByRolName(RolName.ROL_ADMIN).get();
-Rol rolClient= rolService.getByRolName(RolName.ROL_CLIENT).get();
+Rol rolAdmin = rolService.getByRolName(RolName.ROLE_ADMIN).get();
+Rol rolClient= rolService.getByRolName(RolName.ROLE_CLIENT).get();
 Set <Rol> roles= new HashSet<>();
 roles.add(rolAdmin);
 roles.add(rolClient);

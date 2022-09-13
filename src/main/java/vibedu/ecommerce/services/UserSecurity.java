@@ -12,10 +12,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import vibedu.ecommerce.model.User;
+import vibedu.ecommerce.model.Usuario;
 
 public class UserSecurity implements UserDetails{
-private int id;
+private long id;
 private String username; 
 private String password;
 private String mail;
@@ -28,26 +28,18 @@ private Timestamp updated_at;
 private Collection<? extends GrantedAuthority> authorities;
 
 
-public UserSecurity(int id, String username, String password, String mail, String name, String last_name,
-		int updated_by, boolean active, Timestamp created_at, Timestamp updated_at,
+public UserSecurity(long id, String username, String password, 
 		Collection<? extends GrantedAuthority> authorities) {
-	super();
-	this.id = id;
+    this.id = id;
 	this.username = username;
 	this.password = password;
-	this.mail = mail;
-	this.name = name;
-	this.last_name = last_name;
-	this.updated_by = updated_by;
-	this.active = active;
-	this.created_at = created_at;
-	this.updated_at = updated_at;
+	
 	this.authorities = authorities;
 }
-public static UserSecurity build(User usuario) {
+public static UserSecurity build(Usuario usuario) {
 	List<GrantedAuthority> authorities =
 			usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolName().name())).collect(Collectors.toList());
-	return new UserSecurity(usuario.getId(), usuario.getUsername(), usuario.getPassword(), null, null, null, 0, false, null, null, authorities);
+	return new UserSecurity(usuario.getId(),usuario.getUsername(), usuario.getPassword(), authorities);
 }
 @Override
 public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -84,7 +76,7 @@ public boolean isEnabled() {
 	// TODO Auto-generated method stub
 	return true;
 }
-public int getId() {
+public long getId() {
 	return id;
 }
 public void setId(int id) {

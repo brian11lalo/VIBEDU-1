@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import vibedu.ecommerce.model.User;
+import vibedu.ecommerce.model.Usuario;
 import vibedu.ecommerce.repository.IUsuario;
 
 @Service
@@ -20,7 +20,7 @@ public class UserDetailsServiceImplements implements UserDetailsService {
 	UserService usuarioService;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		vibedu.ecommerce.model.User user=usuarioService.getByUsername(username).orElseThrow(()-> new UsernameNotFoundException(username));
+		vibedu.ecommerce.model.Usuario user=usuarioService.getByUsername(username).orElseThrow(()-> new UsernameNotFoundException(username));
 		
 		return UserSecurity.build(user);
 	}
