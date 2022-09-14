@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import vibedu.ecommerce.model.User;
+import vibedu.ecommerce.model.Usuario;
 import vibedu.ecommerce.repository.IUsuario;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,7 +27,7 @@ class VibeduApplicationTests {
 	Timestamp time = new Timestamp(date.getTime());
 	@Test
 	public void crearUsuarioTest() {
-		User user = new User(0, null, null, null, null, null, 0, false, time, time, null);
+		Usuario user = new Usuario();
 		user.setId(1);
 		user.setUsername("alberto23121");
 		user.setPassword(encoder.encode("1234"));
@@ -38,7 +38,7 @@ class VibeduApplicationTests {
 		user.setActive(true);
 		user.setCreated_at(time);
 		user.setUpdated_at(time);
-		User retorno = Prueba.save(user);
+		Usuario retorno = Prueba.save(user);
 		assertTrue(retorno.getPassword().equalsIgnoreCase(user.getPassword()));
 		
 	}
