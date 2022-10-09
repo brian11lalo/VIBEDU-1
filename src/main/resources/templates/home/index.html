@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>);
 
 <html  xmlns:th="http://www.thymeleaf.org" 
       xmlns="http://www.w3.org/1999/xhtml"
@@ -14,29 +14,59 @@
 </head>
         <header th:replace="share/navbar/navbar :: header"></header>
 
-<body>
-        <h1>Hello Spring Security</h1>
-        <p sec:authorize="hasRole('ROLE_ADMIN')" >This is an unsecured page, but you can access the secured pages after authenticating.</p>
-        <p sec:authorize="hasRole('ROLE_CLIENT')" >This CLOIENT is an unsecured page, but you can access the secured pages after authenticating.</p>
-        <p sec:authorize="hasRole('ROLE_SELLER')" >This SELLER is an unsecured page, but you can access the secured pages after authenticating.</p>
-                	<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-					  role admin 
-					</div>
-                	
-                	<span scope="col"  sec:authorize="isAuthenticated()" >Editar2</span>
-                
-                 <span sec:authentication="name"></span>
-			 <span sec:authentication="principal.authorities"></span>
+<script>
+const newdiv = document.createElement("div");
 
-			<div sec:authorize="isAuthenticated()">
-			  This content is only shown to authenticated users.
-			</div>
+
+const url ='https://ecomerce-master.herokuapp.com/api/v1/item'
+
+
+fetch(url)
+.then(response => response.json())
+.then(data => {
+	
+		const HTMLResponse = document.getElementById("elementosCard");
+		const tpl = data.map(description => 
+		
+		`    <div class="col" style="margin-top:20px;">
+
+		<div class="card" style="width: 18rem;">
+		   <img src="${description.image}" style="height:200px; width:100%;"/>
+		  <div class="card-body">
+		   <li>${description.product_name}</li>
+							 <li>${description.price}</li>
+							 <li>${description.category}</li>
+							 <li>${description.sku}</li>
+		  </div>
+		</div>
+		</div>
+		
+		
+	`)
+
+		HTMLResponse.innerHTML = `<div class="row gx-5">
+									${tpl}
+									</div>`
+})
+.catch(err=> console.log(err));
+
+</script>
+<body>
+   
+	<section id="content" >
+		
+	<h2>Vibedu</h2>
+	<p>Tienda de productos</p>
+
 			
-			<form class="form-inline my-2" th:action="@{/logout}" method="post">
-				<button class="btn btn-danger" type="submit">
-				Salirr
-				</button>
-			</form>
+				
+	<div id="elementosCard">
+	<p id="titulo"></p>
+	</div>
+
+	</section>
+			
+			
 </body>
 
 </html>
