@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+  
+    
+
+</head>
+<body>
+    <div id="container" class="cls-container">
+        <div class="cls-content">
+            <div class="cls-content-sm panel">
+                <div class="panel-body">
+        
+                    <div class="media pad-top bord-top"></div>
+
+                    <div class="mar-ver pad-btm">
+       
+                        <h5>Ingreso a la aplicacion</h5>
+                    </div>
+                    
+
+
+                        <form method="POST" th:action="@{/login}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            
+                            <div class="form-group">
+                                <input name="username" type="text" id="username" class="form-control" placeholder="Usuario" >
+                            </div>
+
+                            <div class="form-group">
+                                <input name="password" id="password" type="password" class="form-control" placeholder="Contraseña"
+                                onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false">
+                            </div>
+
+                             <div class="checkbox pad-btm text-left">
+                           </div> 
+
+
+                            <button  class="btn btn-sacmex btn-lg btn-block text-white" type="submit">Iniciar sesión</button>
+                        </form>
+					               </div>
+				<a th:href="@{/usuario/registro}"> registro </a>
+
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
