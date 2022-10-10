@@ -9,11 +9,11 @@ public class Home {
 
 	@GetMapping({"/","/login"})
 	public String index(){
-		return "index";
+		return "login/index";
 	}
 	@GetMapping({"/home"})
 	String home() {
-		return "home";
+		return "home/index";
 	}
 	
 }

@@ -31,7 +31,7 @@ public class UsuarioController {
 	
 	@GetMapping("/registro")
 	public String registroshow() {
-		return "register";
+		return "login/register";
 		
 	}
 	//modelandview
@@ -87,7 +87,7 @@ public class UsuarioController {
 		roles.add(rolUser);
 		user.setRoles(roles);
 		userService.save(user);
-		mv.setViewName("/login");
+		mv.setViewName("login/login");
 		mv.addObject("registroOK", "cuenta creada"+user.getName()+", puedes iniciar sesion ");
 		return mv;
 		

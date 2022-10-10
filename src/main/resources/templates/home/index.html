@@ -1,0 +1,72 @@
+<!DOCTYPE html>);
+
+<html  xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+</head>
+        <header th:replace="share/navbar/navbar :: header"></header>
+
+<script>
+const newdiv = document.createElement("div");
+
+
+const url ='https://ecomerce-master.herokuapp.com/api/v1/item'
+
+
+fetch(url)
+.then(response => response.json())
+.then(data => {
+	
+		const HTMLResponse = document.getElementById("elementosCard");
+		const tpl = data.map(description => 
+		
+		`    <div class="col" style="margin-top:20px;">
+
+		<div class="card" style="width: 18rem;">
+		   <img src="${description.image}" style="height:200px; width:100%;"/>
+		  <div class="card-body">
+		   <li>${description.product_name}</li>
+							 <li>${description.price}</li>
+							 <li>${description.category}</li>
+							 <li>${description.sku}</li>
+		  </div>
+		</div>
+		</div>
+		
+		
+	`)
+
+		HTMLResponse.innerHTML = `<div class="row gx-5">
+									${tpl}
+									</div>`
+})
+.catch(err=> console.log(err));
+
+</script>
+<body>
+   
+	<section id="content" >
+		
+	<h2>Vibedu</h2>
+	<p>Tienda de productos</p>
+
+			
+				
+	<div id="elementosCard">
+	<p id="titulo"></p>
+	</div>
+
+	</section>
+			
+			
+</body>
+
+</html>
